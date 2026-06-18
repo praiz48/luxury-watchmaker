@@ -1,0 +1,31 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Navbar } from './components/layout/Navbar';
+import { Footer } from './components/layout/Footer';
+import { PageTransition } from './components/layout/PageTransition';
+import Home from './pages/Home';
+import Collection from './pages/Collection';
+import Heritage from './pages/Heritage';
+import Contact from './pages/Contact';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="min-h-screen flex flex-col bg-soft-ivory">
+        <Navbar />
+        <main className="flex-grow">
+          <PageTransition>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/collection" element={<Collection />} />
+              <Route path="/heritage" element={<Heritage />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </PageTransition>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
+}
+
+export default App;
