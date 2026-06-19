@@ -1,0 +1,199 @@
+Detailed Page Descriptions
+1. Home (Home.tsx) ✅ COMPLETED
+
+    Main landing page with all sections
+
+    Hero, Craftsmanship, Featured Collection, Movement, Heritage, Testimonials, CTA
+
+2. Collection (Collection.tsx) ⏳ PENDING
+
+    Nav Link: "Timepieces"
+
+    CTA Buttons: "EXPLORE COLLECTION", "SHOP COLLECTION"
+
+    What to include:
+
+        Collection Hero (with category banners)
+
+        Filter/Sort functionality
+
+        Product Grid with watch cards
+
+        Featured pieces
+
+3. Heritage (Heritage.tsx) ⏳ PENDING
+
+    Nav Link: "Heritage"
+
+    From Home: Heritage preview section
+
+    What to include:
+
+        Brand history timeline
+
+        1894 founding story
+
+        Historical imagery
+
+        Legacy & craftsmanship
+
+4. Private Viewing (PrivateViewing.tsx) 🆕 NEEDED
+
+    Nav Button: "Private Viewing"
+
+    Hero CTA: "BOOK PRIVATE VIEWING"
+
+    What to include:
+
+        Booking form
+
+        Boutique locations
+
+        VIP experience description
+
+        Available time slots
+
+        Concierge contact
+
+5. Craftsmanship (Craftsmanship.tsx) 🆕 NEEDED
+
+    Hero Button: "DISCOVER THE CRAFT"
+
+    CTA Button: "DISCOVER THE CRAFT"
+
+    What to include:
+
+        Detailed craftsmanship process
+
+        Atelier imagery
+
+        Hand-finishing techniques
+
+        Master watchmakers
+
+        Behind-the-scenes content
+
+6. Fine Jewelry (FineJewelry.tsx) 🆕 NEEDED
+
+    Nav Link: "Fine Jewelry"
+
+    What to include:
+
+        Jewelry collection
+
+        High jewelry pieces
+
+        Diamond/gemstone information
+
+        Custom jewelry services
+
+7. Bespoke (Bespoke.tsx) 🆕 NEEDED
+
+    Nav Link: "Bespoke"
+
+    Bento Grid: "BESPOKE SERVICES"
+
+    What to include:
+
+        Custom watch services
+
+        Personalization options
+
+        Consultation booking
+
+        Previous bespoke examples
+
+        Design process
+
+8. Caliber (Caliber.tsx) 🆕 NEEDED
+
+    Movement Section: "CALIBER A-940"
+
+    What to include:
+
+        Technical specifications
+
+        Movement diagram/animation
+
+        Engineering details
+
+        Precision metrics
+
+        Watchmaking technology
+
+9. Contact (Contact.tsx) ⏳ PENDING
+
+    In our Router
+
+    What to include:
+
+        Contact form
+
+        Store locations
+
+        Boutique hours
+
+        Phone/email
+
+        Map integration
+
+10. Journal (Journal.tsx) 🟡 OPTIONAL
+
+    Not in original HTML
+
+    Could be a blog/news section
+
+    Features articles, press releases, events
+
+11. About (About.tsx) 🟡 OPTIONAL
+
+    Not in original HTML
+
+    Could combine with Heritage
+
+    Team, values, mission
+
+    ┌─────────────────────────────────────────────────────────┐
+│                     NAVIGATION BAR                       │
+├─────────────────────────────────────────────────────────┤
+│  AURELIAN  │  Heritage  │  Timepieces  │  Fine Jewelry  │  Bespoke  │  [Private Viewing] │
+└─────────────────────────────────────────────────────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │   HERO SECTION        │
+              │  "EXPLORE COLLECTION" │ ──► Collection Page
+              │  "BOOK PRIVATE VIEW"  │ ──► Private Viewing Page
+              └──────────────────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │  CRAFTSMANSHIP       │
+              │  "DISCOVER THE CRAFT"│ ──► Craftsmanship Page
+              └──────────────────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │  FEATURED COLLECTION │
+              │  "VIEW PIECES"       │ ──► Collection Page (filtered)
+              │  "BESPOKE SERVICES"  │ ──► Bespoke Page
+              └──────────────────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │    MOVEMENT          │
+              │  "CALIBER A-940"     │ ──► Caliber Page
+              └──────────────────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │   HERITAGE           │
+              │  "BORN IN GENÈVE"    │ ──► Heritage Page
+              └──────────────────────┘
+                           │
+                           ▼
+              ┌──────────────────────┐
+              │      CTA             │
+              │  "SHOP COLLECTION"   │ ──► Collection Page
+              │  "DISCOVER THE CRAFT"│ ──► Craftsmanship Page
+              └──────────────────────┘

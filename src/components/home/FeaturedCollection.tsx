@@ -23,7 +23,7 @@ export default function FeaturedCollection() {
   };
 
   return (
-    <section className="bg-surface-container-low py-section-gap px-margin-desktop">
+    <section className="bg-[#1b1c1c] py-[160px] px-[80px] max-md:px-6">
       {/* Header */}
       <motion.div 
         className="text-center mb-24"
@@ -31,8 +31,10 @@ export default function FeaturedCollection() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="font-headline-lg text-headline-lg mb-4">CURATED SELECTIONS</h2>
-        <div className="w-24 h-px bg-primary mx-auto"></div>
+        <h2 className="font-['Bodoni_Moda'] text-[48px] leading-[56px] tracking-[0.05em] text-[#e4e2e1] mb-4 font-normal">
+          CURATED SELECTIONS
+        </h2>
+        <div className="w-24 h-px bg-[#f2ca50] mx-auto"></div>
       </motion.div>
 
       {/* Bento Grid */}
@@ -41,7 +43,7 @@ export default function FeaturedCollection() {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="grid grid-cols-1 md:grid-cols-12 gap-gutter h-auto md:h-[900px]"
+        className="grid grid-cols-1 md:grid-cols-12 gap-[32px] h-auto md:h-[900px]"
       >
         {/* Large Item 1 - Heritage Series */}
         <motion.div 
@@ -55,9 +57,9 @@ export default function FeaturedCollection() {
           />
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500"></div>
           <div className="absolute bottom-12 left-12">
-            <span className="font-label-caps text-label-caps text-primary">COLLECTION</span>
-            <h3 className="font-headline-md text-headline-md text-white mt-2">THE HERITAGE SERIES</h3>
-            <a className="inline-block mt-4 text-white font-label-caps text-label-caps border-b border-white opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0" href="#">
+            <span className="font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.2em] text-[#f2ca50] uppercase">COLLECTION</span>
+            <h3 className="font-['Bodoni_Moda'] text-[32px] leading-[40px] tracking-[0.05em] text-white mt-2 font-normal">THE HERITAGE SERIES</h3>
+            <a className="inline-block mt-4 text-white font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.2em] border-b border-white opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0 uppercase" href="#">
               VIEW PIECES
             </a>
           </div>
@@ -75,7 +77,7 @@ export default function FeaturedCollection() {
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-all duration-500"></div>
           <div className="absolute bottom-12 left-12">
-            <h3 className="font-headline-md text-headline-md text-white">HIGH JEWELRY</h3>
+            <h3 className="font-['Bodoni_Moda'] text-[32px] leading-[40px] tracking-[0.05em] text-white font-normal">HIGH JEWELRY</h3>
           </div>
         </motion.div>
 
@@ -91,7 +93,7 @@ export default function FeaturedCollection() {
           />
           <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500"></div>
           <div className="absolute bottom-12 left-12">
-            <h3 className="font-headline-md text-headline-md text-white">CHRONOGRAPHS</h3>
+            <h3 className="font-['Bodoni_Moda'] text-[32px] leading-[40px] tracking-[0.05em] text-white font-normal">CHRONOGRAPHS</h3>
           </div>
         </motion.div>
 
@@ -110,8 +112,8 @@ export default function FeaturedCollection() {
             className="absolute inset-0 flex items-center justify-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-700"
           >
             <div className="p-8">
-              <h3 className="font-display-lg text-headline-lg text-white mb-4">BESPOKE SERVICES</h3>
-              <p className="font-body-md text-on-surface max-w-xs mx-auto">
+              <h3 className="font-['Bodoni_Moda'] text-[48px] leading-[56px] tracking-[0.05em] text-white mb-4 font-normal">BESPOKE SERVICES</h3>
+              <p className="font-['Hanken_Grotesk'] text-[16px] leading-[24px] tracking-[0.01em] text-[#e4e2e1] max-w-xs mx-auto">
                 Create a legacy that is uniquely yours with our master craftsmen.
               </p>
             </div>

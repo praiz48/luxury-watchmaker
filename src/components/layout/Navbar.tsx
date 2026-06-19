@@ -1,10 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -13,42 +17,167 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  return (
-    <motion.header 
-      className={`fixed top-0 w-full z-50 transition-all duration-500 flex justify-between items-center px-margin-desktop py-6 w-full ${
-        scrolled ? 'bg-surface/90 backdrop-blur-md' : 'bg-transparent'
-      }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <Link to="/" className="font-display-lg text-headline-md tracking-widest text-primary">
-        AURELIAN
-      </Link>
-      
-      <nav className="hidden md:flex gap-gutter items-center">
-        <Link to="/heritage" className="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors duration-300">
-          Heritage
-        </Link>
-        <Link to="/collection" className="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors duration-300">
-          Timepieces
-        </Link>
-        <a href="#" className="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors duration-300">
-          Fine Jewelry
-        </a>
-        <a href="#" className="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors duration-300">
-          Bespoke
-        </a>
-      </nav>
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
 
-      <div className="flex items-center gap-6">
-        <button className="font-label-caps text-label-caps text-primary border border-primary px-6 py-2 hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase tracking-widest">
-          Private Viewing
-        </button>
-        <span className="material-symbols-outlined text-primary cursor-pointer">
-          menu
-        </span>
-      </div>
-    </motion.header>
+  // Close mobile menu on window resize (if switching to desktop)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Close mobile menu when clicking a link
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
+   const handlePrivateViewing = () => {
+    navigate('/private-viewing');
+  };
+
+  const navLinks = [
+    { to: '/heritage', label: 'Heritage' },
+    { to: '/collection', label: 'Timepieces' },
+    { to: '#', label: 'Fine Jewelry' },
+    { to: '#', label: 'Bespoke' },
+  ];
+
+  return (
+    <>
+      <motion.header 
+        className={`fixed top-0 w-full z-50 transition-all duration-500 flex justify-between items-center px-margin-desktop py-6 ${
+          scrolled ? 'bg-surface/90 backdrop-blur-md' : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* Logo */}
+        <Link to="/" className="font-display-lg text-headline-md tracking-widest text-primary z-50">
+          AURELIAN
+        </Link>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex gap-gutter items-center">
+          {navLinks.map((link) => (
+            <Link 
+              key={link.label}
+              to={link.to} 
+              className="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors duration-300"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Right side buttons */}
+        <div className="flex items-center gap-6 z-50">
+          <button onClick={handlePrivateViewing} className="hidden md:block font-label-caps text-label-caps text-primary border border-primary px-6 py-2 hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase tracking-widest">
+            Private Viewing
+          </button>
+          
+          {/* Hamburger Menu Button */}
+          <button 
+            className="md:hidden flex flex-col gap-1.5 p-2 group"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <motion.span 
+              className="block w-6 h-0.5 bg-primary transition-all duration-300"
+              animate={isMobileMenuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
+            />
+            <motion.span 
+              className="block w-6 h-0.5 bg-primary transition-all duration-300"
+              animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+            />
+            <motion.span 
+              className="block w-6 h-0.5 bg-primary transition-all duration-300"
+              animate={isMobileMenuOpen ? { rotate: -45, y: -5 } : { rotate: 0, y: 0 }}
+            />
+          </button>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            className="fixed inset-0 z-40 bg-surface/95 backdrop-blur-xl md:hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+          >
+            <div className="flex flex-col items-center justify-center h-full gap-12 px-8">
+              {/* Mobile Navigation Links */}
+              <motion.div 
+                className="flex flex-col items-center gap-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                {navLinks.map((link, index) => (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                  >
+                    <Link 
+                      to={link.to} 
+                      className="font-serif text-4xl text-on-surface hover:text-primary transition-colors duration-300"
+                      onClick={handleLinkClick}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Mobile CTA Button */}
+              <motion.button 
+                className="font-label-caps text-label-caps text-primary border border-primary px-8 py-4 hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase tracking-widest"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                Private Viewing
+              </motion.button>
+
+              {/* Social/Footer Icons */}
+              <motion.div 
+                className="flex gap-6 mt-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
+                <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+                  public
+                </span>
+                <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+                  camera
+                </span>
+                <span className="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer transition-colors">
+                  share
+                </span>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };

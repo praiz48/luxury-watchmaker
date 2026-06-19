@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Collection from './pages/Collection';
 import Heritage from './pages/Heritage';
 import Contact from './pages/Contact';
+import PrivateViewing from './pages/PrivateViewing';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/collection" element={<Collection />} />
               <Route path="/heritage" element={<Heritage />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/private-viewing" element={<PrivateViewing />} />
             </Routes>
           </PageTransition>
         </main>
