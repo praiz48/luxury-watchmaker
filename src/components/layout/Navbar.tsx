@@ -51,7 +51,7 @@ export const Navbar = () => {
   const navLinks = [
     { to: '/heritage', label: 'Heritage' },
     { to: '/collection', label: 'Timepieces' },
-    { to: '#', label: 'Fine Jewelry' },
+    { to: '/about', label: 'About' },
     { to: '#', label: 'Bespoke' },
   ];
 

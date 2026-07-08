@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import { useNavigate } from 'react-router-dom';
 export default function Craftsmanship() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
+  const navigate = useNavigate();
 
   return (
     <section className="py-[160px] px-[80px] grid md:grid-cols-2 gap-[32px] items-center max-md:px-6">
@@ -45,7 +46,10 @@ export default function Craftsmanship() {
         <p className="font-['Hanken_Grotesk'] text-[16px] leading-[24px] tracking-[0.01em] text-[#d0c5af]/80 mb-10 italic">
           "Precision is not a goal; it is our baseline. Beauty is what we build upon it."
         </p>
-        <button className="border-b border-[#f2ca50] text-[#f2ca50] font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.2em] pb-2 hover:pr-4 transition-all duration-300 uppercase">
+        <button 
+          className="border-b border-[#f2ca50] text-[#f2ca50] font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.2em] pb-2 hover:pr-4 transition-all duration-300 uppercase"
+          onClick={() => navigate('/craftsmanship')}
+        >
           DISCOVER THE CRAFT
         </button>
       </motion.div>

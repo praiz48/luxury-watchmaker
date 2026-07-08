@@ -7,7 +7,8 @@ import Collection from './pages/Collection';
 import Heritage from './pages/Heritage';
 import Contact from './pages/Contact';
 import PrivateViewing from './pages/PrivateViewing';
-
+import Craftsmanship from './pages/Craftsmanship';
+import About from './pages/About';
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +22,8 @@ function App() {
               <Route path="/heritage" element={<Heritage />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/private-viewing" element={<PrivateViewing />} />
+              <Route path="/craftsmanship" element={<Craftsmanship />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </PageTransition>
         </main>
