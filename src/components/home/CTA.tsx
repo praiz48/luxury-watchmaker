@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
+import { useNavigate } from 'react-router-dom';
 export default function CTA() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
+  const navigate = useNavigate();
 
   return (
     <section className="relative h-[819px] w-full flex items-center justify-center overflow-hidden">
@@ -35,6 +36,7 @@ export default function CTA() {
         </h2>
         <div className="flex flex-col md:flex-row gap-6 justify-center">
           <motion.button 
+          onClick={() => navigate("/collection")}
             className="bg-primary text-on-primary px-12 py-5 font-label-caps text-label-caps hover:scale-105 transition-transform duration-500"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -42,6 +44,7 @@ export default function CTA() {
             SHOP COLLECTION
           </motion.button>
           <motion.button 
+            onClick={() => navigate("/craftsmanship")}
             className="border border-white text-white px-12 py-5 font-label-caps text-label-caps hover:bg-white/10 transition-all duration-500"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

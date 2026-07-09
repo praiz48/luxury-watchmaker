@@ -52,7 +52,7 @@ export const Navbar = () => {
     { to: '/heritage', label: 'Heritage' },
     { to: '/collection', label: 'Timepieces' },
     { to: '/about', label: 'About' },
-    { to: '#', label: 'Bespoke' },
+    { to: '/bespoke', label: 'Bespoke' },
   ];
 
   return (

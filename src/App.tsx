@@ -9,6 +9,7 @@ import Contact from './pages/Contact';
 import PrivateViewing from './pages/PrivateViewing';
 import Craftsmanship from './pages/Craftsmanship';
 import About from './pages/About';
+import Bespoke from './pages/Bespoke';
 function App() {
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ function App() {
               <Route path="/private-viewing" element={<PrivateViewing />} />
               <Route path="/craftsmanship" element={<Craftsmanship />} />
               <Route path="/about" element={<About />} />
+              <Route path="/bespoke" element={<Bespoke />} />
             </Routes>
           </PageTransition>
         </main>
