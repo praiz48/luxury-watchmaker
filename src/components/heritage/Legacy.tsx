@@ -5,15 +5,16 @@ export default function Legacy() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
+    rootMargin: '-50px 0px',
   });
 
   return (
-    <section className="px-6 md:px-[80px] py-[160px] grid grid-cols-1 md:grid-cols-2 gap-20">
+    <section ref={ref} className="px-6 md:px-[80px] py-[160px] grid grid-cols-1 md:grid-cols-2 gap-20">
       {/* Archive - Left */}
       <motion.div 
         className="space-y-[32px]"
         initial={{ opacity: 0, x: -30 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : -30 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <div className="overflow-hidden">
@@ -42,7 +43,7 @@ export default function Legacy() {
       <motion.div 
         className="space-y-[32px] md:mt-40"
         initial={{ opacity: 0, x: 30 }}
-        animate={inView ? { opacity: 1, x: 0 } : {}}
+        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 30 }}
         transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
       >
         <div className="overflow-hidden">

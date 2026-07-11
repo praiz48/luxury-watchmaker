@@ -37,6 +37,8 @@ export default function Timeline() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+    // Add rootMargin to trigger slightly earlier
+    rootMargin: '-50px 0px',
   });
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -88,9 +90,10 @@ export default function Timeline() {
     <section className="py-[160px] bg-[#0e0e0e]">
       {/* Header */}
       <motion.div 
+        ref={ref}
         className="px-6 md:px-[80px] mb-24"
         initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
+        animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
         transition={{ duration: 0.8 }}
       >
         <h2 className="font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.3em] text-[#f2ca50] mb-4 uppercase">
@@ -112,7 +115,7 @@ export default function Timeline() {
             key={index}
             className="min-w-[300px] md:min-w-[450px] flex-shrink-0"
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
             transition={{ duration: 0.8, delay: item.delay }}
           >
             <div className="aspect-[3/4] mb-8 overflow-hidden bg-[#1b1c1c]">

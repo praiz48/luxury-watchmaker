@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Handle scroll effect
   useEffect(() => {
@@ -44,7 +44,8 @@ export const Navbar = () => {
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
   };
-   const handlePrivateViewing = () => {
+
+  const handlePrivateViewing = () => {
     navigate('/private-viewing');
   };
 
@@ -54,6 +55,11 @@ export const Navbar = () => {
     { to: '/about', label: 'About' },
     { to: '/bespoke', label: 'Bespoke' },
   ];
+
+  // Check if a link is active
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
   return (
     <>
@@ -72,20 +78,41 @@ export const Navbar = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex gap-gutter items-center">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.label}
-              to={link.to} 
-              className="font-label-caps text-label-caps text-on-surface hover:text-primary transition-colors duration-300"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(link.to);
+            return (
+              <Link 
+                key={link.label}
+                to={link.to} 
+                className={`font-label-caps text-label-caps transition-colors duration-300 relative ${
+                  active 
+                    ? 'text-primary border-b border-primary pb-1' 
+                    : 'text-on-surface hover:text-primary'
+                }`}
+              >
+                {link.label}
+                {active && (
+                  <motion.span 
+                    className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"
+                    layoutId="activeNavIndicator"
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right side buttons */}
         <div className="flex items-center gap-6 z-50">
-          <button onClick={handlePrivateViewing} className="hidden md:block font-label-caps text-label-caps text-primary border border-primary px-6 py-2 hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase tracking-widest">
+          <button 
+            onClick={handlePrivateViewing} 
+            className={`hidden md:block font-label-caps text-label-caps px-6 py-2 transition-all duration-500 uppercase tracking-widest ${
+              location.pathname === '/private-viewing'
+                ? 'bg-primary text-on-primary'
+                : 'border border-primary text-primary hover:bg-primary hover:text-on-primary'
+            }`}
+          >
             Private Viewing
           </button>
           
@@ -129,30 +156,52 @@ export const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                {navLinks.map((link, index) => (
-                  <motion.div
-                    key={link.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
-                  >
-                    <Link 
-                      to={link.to} 
-                      className="font-serif text-4xl text-on-surface hover:text-primary transition-colors duration-300"
-                      onClick={handleLinkClick}
+                {navLinks.map((link, index) => {
+                  const active = isActive(link.to);
+                  return (
+                    <motion.div
+                      key={link.label}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 + index * 0.1 }}
                     >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link 
+                        to={link.to} 
+                        className={`font-serif text-4xl transition-colors duration-300 ${
+                          active 
+                            ? 'text-primary' 
+                            : 'text-on-surface hover:text-primary'
+                        }`}
+                        onClick={handleLinkClick}
+                      >
+                        {link.label}
+                        {active && (
+                          <motion.span 
+                            className="block w-full h-0.5 bg-primary mt-2 mx-auto"
+                            layoutId="mobileActiveIndicator"
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </motion.div>
 
               {/* Mobile CTA Button */}
               <motion.button 
-                className="font-label-caps text-label-caps text-primary border border-primary px-8 py-4 hover:bg-primary hover:text-on-primary transition-all duration-500 uppercase tracking-widest"
+                className={`font-label-caps text-label-caps px-8 py-4 transition-all duration-500 uppercase tracking-widest ${
+                  location.pathname === '/private-viewing'
+                    ? 'bg-primary text-on-primary'
+                    : 'border border-primary text-primary hover:bg-primary hover:text-on-primary'
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
+                onClick={() => {
+                  handleLinkClick();
+                  handlePrivateViewing();
+                }}
               >
                 Private Viewing
               </motion.button>

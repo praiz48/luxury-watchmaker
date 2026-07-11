@@ -5,17 +5,18 @@ export default function DesignMaterials() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
+    rootMargin: '-50px 0px',
   });
 
   return (
-    <section className="py-[160px] px-[80px] max-md:px-6 overflow-hidden">
+    <section ref={ref} className="py-[160px] px-[80px] max-md:px-6 overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px] items-center">
         {/* Left Column */}
         <div className="space-y-12">
           <motion.div 
             className="reveal-text"
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
             transition={{ duration: 0.8 }}
           >
             <span className="font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.2em] text-[#f2ca50] mb-4 block uppercase">
@@ -33,7 +34,7 @@ export default function DesignMaterials() {
             className="relative group overflow-hidden"
             style={{ boxShadow: '0 0 50px rgba(242, 202, 80, 0.05)' }}
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img 
@@ -50,7 +51,7 @@ export default function DesignMaterials() {
             className="relative group overflow-hidden"
             style={{ boxShadow: '0 0 50px rgba(242, 202, 80, 0.05)' }}
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <img 
@@ -62,7 +63,7 @@ export default function DesignMaterials() {
           <motion.p 
             className="font-['Hanken_Grotesk'] text-[16px] leading-[24px] tracking-[0.01em] text-[#d0c5af] max-w-sm italic ml-auto"
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             "Every line is a promise. Every curve is a testament to the pursuit of perfection."

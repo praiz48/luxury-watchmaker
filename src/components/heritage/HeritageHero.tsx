@@ -20,7 +20,6 @@ export default function HeritageHero() {
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
         <div className="absolute inset-0 bg-black/40"></div>
-        {/* Vignette */}
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/80 pointer-events-none"></div>
       </div>
 
@@ -28,13 +27,17 @@ export default function HeritageHero() {
       <div className="relative z-10 text-center px-6 md:px-4">
         <motion.span 
           className="font-['Hanken_Grotesk'] text-[12px] font-semibold tracking-[0.5em] text-[#f2ca50] mb-4 block uppercase"
-          {...fadeUp(0)}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
           THE FOUNDATION OF TIME
         </motion.span>
         <motion.h1 
           className="font-['Bodoni_Moda'] text-[48px] md:text-[84px] leading-[52px] md:leading-[92px] tracking-[0.02em] text-[#e4e2e1] font-normal"
-          {...fadeUp(0.2)}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           Generations of Precision
         </motion.h1>

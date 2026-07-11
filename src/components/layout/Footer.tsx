@@ -41,17 +41,17 @@ export const Footer = () => {
             Inquiries
           </h5>
           <p className="font-['Hanken_Grotesk'] text-[16px] leading-[24px] tracking-[0.01em] text-[#d0c5af] mb-4">
-            concierge@aurelian-geneve.com
+            company@gmail.com
           </p>
           <p className="font-['Hanken_Grotesk'] text-[16px] leading-[24px] tracking-[0.01em] text-[#d0c5af]">
-            +41 22 730 00 00
+            + company number
           </p>
         </div>
       </div>
       
       <div className="mt-24 px-[80px] max-md:px-6 border-t border-[#99907c]/10 pt-12 text-center">
         <p className="font-['Hanken_Grotesk'] text-[10px] font-semibold tracking-[0.5em] text-[#d0c5af]/50 uppercase">
-          © 2024 AURELIAN GENÈVE. ALL RIGHTS RESERVED.
+          © 2026 AURELIAN GENÈVE. ALL RIGHTS RESERVED BY PIZI DEV.
         </p>
       </div>
     </footer>
