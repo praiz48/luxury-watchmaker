@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
 
 export default function ContactForm() {
-  const [ref, inView] = useInView({
+  const [, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
